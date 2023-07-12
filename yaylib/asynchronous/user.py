@@ -288,9 +288,11 @@ def get_timestamp(self) -> UserTimestampResponse:
     )
 
 
-def get_user(self, user_id: int) -> User:
-    return self._make_request(
-        "GET", endpoint=f"{Endpoints.USERS_V2}/{user_id}", data_type=UserResponse
+async def get_user(self, user_id: int) -> User:
+    return (
+        await self._make_request(
+            "GET", endpoint=f"{Endpoints.USERS_V2}/{user_id}", data_type=UserResponse
+        )
     ).user
 
 

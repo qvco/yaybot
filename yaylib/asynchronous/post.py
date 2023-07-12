@@ -842,7 +842,7 @@ def get_timeline_by_keyword(self, keyword: str = None, **params) -> PostsRespons
     )
 
 
-def get_timeline(self, **params: int | str | bool) -> PostsResponse:
+async def get_timeline(self, **params: int | str | bool) -> PostsResponse:
     # - from: str - (optional)
     """
 
@@ -866,7 +866,7 @@ def get_timeline(self, **params: int | str | bool) -> PostsResponse:
     if "noreply_mode" in params and params["noreply_mode"] is True:
         self._check_authorization()
         endpoint = f"{Endpoints.POSTS_V2}/noreply_timeline"
-    return self._make_request(
+    return await self._make_request(
         "GET", endpoint=endpoint, params=params, data_type=PostsResponse
     )
 

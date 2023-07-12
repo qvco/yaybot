@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-import asyncio
 import os
 import time
 import logging
@@ -60,6 +59,12 @@ current_path = os.path.abspath(os.getcwd())
 
 
 class AsyncBaseClient:
+    """
+
+    Base Client for AsyncClient.
+
+    """
+
     def __init__(
         self,
         access_token: str = None,
@@ -290,4 +295,39 @@ class AsyncBaseClient:
 
 
 class AsyncClient(AsyncBaseClient):
-    pass
+    """
+
+    API Client for asynchronous requests.
+
+    """
+
+    async def get_timeline(self, **params) -> PostsResponse:
+        """
+
+        タイムラインを取得します
+
+        Parameters
+        ----------
+
+            - noreply_mode: bool - (optional)
+            - from_post_id: int - (optional)
+            - number: int - (optional)
+            - order_by: str - (optional)
+            - experiment_older_age_rules: bool - (optional)
+            - shared_interest_categories: bool - (optional)
+            - mxn: int - (optional)
+            - en: int - (optional)
+            - vn: int - (optional)
+            - reduce_selfie: bool - (optional)
+            - custom_generation_range: bool - (optional)
+
+        """
+        return await get_timeline(self, **params)
+
+    async def get_user(self, user_id: int) -> User:
+        """
+
+        ユーザーの情報を取得します
+
+        """
+        return await get_user(self, user_id)
