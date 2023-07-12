@@ -10,6 +10,7 @@ An API wrapper for Yay! (yay.space) written in Python.
 
 """
 
+from .async_client import *
 from .client import *
 from .config import *
 from .errors import *
@@ -19,6 +20,7 @@ from .utils import *
 
 __version__ = Configs.YAYLIB_VERSION
 __all__ = [
+    "AsyncClient",
     "Client",
     "config",
     "errors",
